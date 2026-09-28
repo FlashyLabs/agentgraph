@@ -1,0 +1,10 @@
+{
+  "contract": "graph/1",
+  "subject": "org/lanternworks",
+  "generated": "2026-09-28T00:00:00Z",
+  "nodes": [
+    { "id": "org/lanternworks", "kind": "org", "label": "Lanternworks (fictional)", "source": "https://lanternworks.example/.well-known/flashyos.json" },
+    { "id": "asset/lanternworks-hoard", "kind": "wallet", "label": "a wallet is an identity/1 subject, not a graph/1 node kind", "source": "https://lanternworks.example/hoard.json" }
+  ],
+  "edges": []
+}

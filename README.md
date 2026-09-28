@@ -1,0 +1,48 @@
+# agentgraph — `graph/1`
+
+`graph/1` is the vendor-neutral format for the universal graph of the agentic internet — people, organisations, agents, capabilities, tools and assets, and the evidenced relationships between them — for anyone who publishes what exists in their corner of the network and for any machine that needs to answer "find an agent that can do X, with backing somebody other than itself asserts." It is the **"What exists?"** layer: it says who and what is there and how they relate, and deliberately nothing about how good, how much, or how trusted. It extends the estate's `realm/1` registry ([FlashyLabs/therealm](https://github.com/FlashyLabs/therealm)) rather than reinventing it: a realm manifest is a source of nodes.
+
+## Quick start
+
+```bash
+node vendor-graph.mjs check vectors/estate-minimal.json
+node vendor-graph.mjs query vectors/estate-fictional.json deliver --attested-by org/
+npm test
+```
+
+The first prints `graph/1: vectors/estate-minimal.json: valid — 3 nodes, 2 edges, published by org/lanternworks`, or every refusal and exit 1. The second prints the agent ids that offer `deliver` and carry an `attests` edge from any org, one per line. The third runs the suite with `node --test`; nothing installs.
+
+Derive nodes from a realm manifest: `node vendor-graph.mjs from-realm test/fixtures/realm-1.json`.
+
+## What makes it different
+
+**Every edge has evidence.** An edge carries `basis`, an https URL its asserter publishes; without one the edge is a claim, and `graph/1` does not carry claims. The checker refuses it.
+
+**No self-attestation.** An `attests` edge whose `asserted_by` is either of its endpoints is refused. Standing comes from what *others* assert — the estate's oldest rule, carried into the graph unchanged.
+
+**No scores inside the graph.** `score`, `rating`, `rank`, `reputation`, `amount`, `value`, `price`, `balance` and `gold` are refused as key names at any depth, under any prefix. Reputation is a consumer's computation over the graph; money is a separate format.
+
+**Derived from `realm/1`, not beside it.** `fromRealm(manifest)` maps every house in a realm manifest to an `org/<org>` node, keeping the house's slug, lore name, status and its identity/1 house and archetype under `x-realm`, and citing the house's own handshake as the place its existence can be checked. Ids are the estate's — `person/<id>`, `org/<slug>`, `agent/<id>` — and a capability is a lowercase action verb, exactly as an AAO charter spells it.
+
+**Refuses rather than guesses.** Unknown keys (unless `x-` prefixed), a dangling reference, a duplicate id, a node whose id prefix disagrees with its kind, an edge between kinds its table does not allow — each is a named refusal, and each has a vector.
+
+## Layout
+
+| Path | What it is |
+|---|---|
+| `SPEC.md` | the `graph/1` contract: shape, closed lists, refusals, how it composes with `realm/1`, the v1 query, serving |
+| `schema/graph-1.json` | JSON Schema (draft 2020-12) for the shape; the cross-reference rules live in the checker |
+| `vendor-graph.mjs` | the checker and the CLI — `validate`, `fromRealm`, `query`; `check`, `query`, `from-realm`. Dependency-free; the copy other repositories vendor |
+| `vectors/` | three valid documents (minimal, a multi-org fictional estate, one with `x-` extensions) and, under `invalid/`, one per refusal, named for it |
+| `test/` | `node --test` — every vector, every rule, the realm derivation against a realm/1-shaped fixture, the query, the CLI, and the scaffold's own promises |
+| `scripts/lint.mjs` | zero-install lint: syntax, JSON, node:-only imports, credential shapes, the licence line |
+| `CLAUDE.md` | what is different here, the commands, the rules a test enforces, the estate house rules |
+
+## Links
+
+- [FlashyLabs/therealm](https://github.com/FlashyLabs/therealm) — `realm/1`, the registry this format extends; its `SPEC.md` defines the house shape `fromRealm` reads and the identity/1 taxonomy the `x-realm` block carries forward.
+- Sibling standards, by name: `intent/1` (what somebody wants), `ritual/1` (witnessed recurring observance), `aao/0.1` (the org charter a capability verb comes from), `delegation/1` (attenuated authority — a `delegates-to` edge's basis will typically be one), `agent/1` (an agent's own record). `graph/1` names the things they act on and refers to them; it defines none of them.
+
+Status: draft. Nothing is published to a registry, nothing is adopted, and no live property serves `/.well-known/graph.json` yet — the format is proposed here so that when one does, the checker already exists.
+
+Licence: to be declared at launch. The estate licence register in flashyos governs; this repository is not yet open-sourced.

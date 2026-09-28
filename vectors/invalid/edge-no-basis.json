@@ -1,0 +1,19 @@
+{
+  "contract": "graph/1",
+  "subject": "org/lanternworks",
+  "generated": "2026-09-28T00:00:00Z",
+  "nodes": [
+    { "id": "org/lanternworks", "kind": "org", "label": "Lanternworks (fictional)", "source": "https://lanternworks.example/.well-known/flashyos.json" },
+    { "id": "agent/lanternworks-courier", "kind": "agent", "label": "courier", "source": "https://lanternworks.example/.well-known/directory.json" }
+  ],
+  "edges": [
+    {
+      "id": "edge/lanternworks-operates-courier",
+      "from": "org/lanternworks",
+      "to": "agent/lanternworks-courier",
+      "kind": "operates",
+      "asserted_by": "org/lanternworks",
+      "at": "2026-09-28T00:00:00Z"
+    }
+  ]
+}

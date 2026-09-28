@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FlashyLabs/agentgraph/schema/graph-1.json",
+  "title": "graph/1",
+  "description": "The universal graph of the agentic internet — the 'What exists?' layer. Nodes are people, organisations, agents, capabilities, tools and assets; edges are relationships, every one citing an https basis its asserter publishes. This schema holds the shape; the cross-reference rules (dangling references, self-attestation, uniqueness, subject-is-a-node) live in vendor-graph.mjs validate(). Status: draft.",
+  "type": "object",
+  "required": ["contract", "subject", "generated", "nodes", "edges"],
+  "properties": {
+    "contract": { "const": "graph/1" },
+    "subject": {
+      "type": "string",
+      "description": "The publisher — an org/<slug> id, which must also be an org node in the document.",
+      "pattern": "^org/[a-z0-9][a-z0-9.-]*$"
+    },
+    "generated": { "$ref": "#/$defs/iso" },
+    "nodes": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+    "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } },
+    "externals": {
+      "type": "array",
+      "description": "Ids this document references but does not author, each qualified by an https URL where it can be checked.",
+      "items": { "$ref": "#/$defs/external" }
+    }
+  },
+  "patternProperties": { "^x-": {} },
+  "additionalProperties": false,
+  "$defs": {
+    "iso": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "https": { "type": "string", "pattern": "^https://" },
+    "nodeKind": { "enum": ["person", "org", "agent", "capability", "tool", "asset"] },
+    "edgeKind": { "enum": ["member-of", "operates", "offers", "requires", "owns", "attests", "transacted-with", "delegates-to"] },
+    "nodeId": { "type": "string", "pattern": "^(person|org|agent|capability|tool|asset)/[a-z0-9][a-z0-9.-]*$" },
+    "asserterId": { "type": "string", "pattern": "^(person|org)/[a-z0-9][a-z0-9.-]*$" },
+    "node": {
+      "type": "object",
+      "required": ["id", "kind", "label", "source"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nodeId" },
+        "kind": { "$ref": "#/$defs/nodeKind" },
+        "label": { "type": "string", "minLength": 1 },
+        "source": { "$ref": "#/$defs/https", "description": "Where this node's existence can be checked, e.g. the org's /.well-known/flashyos.json or its realm/1 entry." }
+      },
+      "patternProperties": { "^x-": {} },
+      "additionalProperties": false
+    },
+    "external": {
+      "type": "object",
+      "required": ["id", "kind", "source"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nodeId" },
+        "kind": { "$ref": "#/$defs/nodeKind" },
+        "source": { "$ref": "#/$defs/https" }
+      },
+      "patternProperties": { "^x-": {} },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "from", "to", "kind", "asserted_by", "basis", "at"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^edge/[a-z0-9][a-z0-9.-]*$" },
+        "from": { "$ref": "#/$defs/nodeId" },
+        "to": { "$ref": "#/$defs/nodeId" },
+        "kind": { "$ref": "#/$defs/edgeKind" },
+        "asserted_by": { "$ref": "#/$defs/asserterId", "description": "Who places this edge in the graph. For an attests edge, never the edge's own from or to." },
+        "basis": { "$ref": "#/$defs/https", "description": "The evidence: an https URL the asserter publishes." },
+        "at": { "$ref": "#/$defs/iso" }
+      },
+      "patternProperties": { "^x-": {} },
+      "additionalProperties": false
+    }
+  }
+}

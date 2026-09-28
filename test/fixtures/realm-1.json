@@ -1,0 +1,57 @@
+{
+  "contract": "realm/1",
+  "name": "The Vale",
+  "domain": "atlas-of-vale.example",
+  "parent": { "org": "crown-of-vale", "domain": "crown-of-vale.example", "role": "The register the Vale is drawn over (fictional)" },
+  "chronicle": { "spec": "chronicle/1", "feed": "https://chronicle.vale.example/feed.json", "guide": "https://chronicle.vale.example/llms.txt" },
+  "rising": { "spec": "rising/1", "feed": "https://atlas-of-vale.example/.well-known/rising.json", "page": "https://atlas-of-vale.example/rising" },
+  "identity": {
+    "contract": "identity/1",
+    "source": "RitualOS",
+    "sourceUrl": "https://ritualos.com",
+    "houses": [
+      { "key": "flame" }, { "key": "sky" }, { "key": "stone" }, { "key": "wind" }, { "key": "tides" }
+    ],
+    "archetypes": [
+      { "key": "visionary" }, { "key": "strategist" }, { "key": "creator" }, { "key": "seeker" }, { "key": "guardian" },
+      { "key": "alchemist" }, { "key": "trickster" }, { "key": "oracle" }, { "key": "warrior" }, { "key": "healer" }
+    ],
+    "roleArchetypes": { "trust": "guardian", "release": "alchemist", "product": "creator", "growth": "trickster" }
+  },
+  "houses": [
+    {
+      "slug": "lantern",
+      "house": "The Lanternworks",
+      "org": "lanternworks",
+      "domain": "lanternworks.example",
+      "accent": "#f0c65a",
+      "role": "Fictional: lights the roads.",
+      "status": "live",
+      "identity": { "house": "flame", "archetype": "creator" },
+      "surfaces": {
+        "handshake": "https://lanternworks.example/.well-known/flashyos.json",
+        "frontdoor": "https://lanternworks.example/.well-known/frontdoor.json",
+        "directory": "https://lanternworks.example/directory.fragment.json"
+      }
+    },
+    {
+      "slug": "tidewater",
+      "house": "The Tidewater Guild",
+      "org": "tidewater-guild",
+      "domain": "tidewater-guild.example",
+      "accent": "#3b82f6",
+      "role": "Fictional: keeps the tide tables.",
+      "status": "building",
+      "identity": { "house": "tides", "archetype": "oracle" }
+    },
+    {
+      "slug": "embers",
+      "house": "The Ember Rites",
+      "org": "ember-rites",
+      "domain": "ember-rites.example",
+      "accent": "#ef4444",
+      "role": "Fictional: not yet declared.",
+      "status": "incubating"
+    }
+  ]
+}

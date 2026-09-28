@@ -1,0 +1,50 @@
+{
+  "contract": "graph/1",
+  "subject": "org/lanternworks",
+  "generated": "2026-09-28T00:00:00Z",
+  "x-fictional": true,
+  "x-derived-from": { "contract": "realm/1", "url": "https://atlas-of-vale.example/.well-known/realm.json" },
+  "nodes": [
+    {
+      "id": "org/lanternworks",
+      "kind": "org",
+      "label": "Lanternworks (fictional)",
+      "source": "https://lanternworks.example/.well-known/flashyos.json",
+      "x-realm": { "relation": "house", "slug": "lantern", "house": "The Lanternworks", "domain": "lanternworks.example", "status": "live", "identity": { "house": "flame", "archetype": "creator" } }
+    },
+    {
+      "id": "agent/lanternworks-courier",
+      "kind": "agent",
+      "label": "courier",
+      "source": "https://lanternworks.example/.well-known/directory.json",
+      "x-role": "courier"
+    },
+    {
+      "id": "capability/deliver",
+      "kind": "capability",
+      "label": "deliver",
+      "source": "https://lanternworks.example/.well-known/flashyos-charter.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge/lanternworks-operates-courier",
+      "from": "org/lanternworks",
+      "to": "agent/lanternworks-courier",
+      "kind": "operates",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/directory.json",
+      "at": "2026-09-28T00:00:00Z",
+      "x-note": "an extension key on an edge is allowed; a score under one is not"
+    },
+    {
+      "id": "edge/courier-offers-deliver",
+      "from": "agent/lanternworks-courier",
+      "to": "capability/deliver",
+      "kind": "offers",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/flashyos-charter.json",
+      "at": "2026-09-28T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "contract": "graph/1",
+  "subject": "org/atlas-of-vale",
+  "generated": "2026-09-28T00:00:00Z",
+  "nodes": [
+    {
+      "id": "org/atlas-of-vale",
+      "kind": "org",
+      "label": "Atlas of Vale — a fictional registry, the publisher of this graph",
+      "source": "https://atlas-of-vale.example/.well-known/flashyos.json"
+    },
+    {
+      "id": "org/lanternworks",
+      "kind": "org",
+      "label": "Lanternworks (fictional)",
+      "source": "https://atlas-of-vale.example/.well-known/realm.json"
+    },
+    {
+      "id": "org/tidewater-guild",
+      "kind": "org",
+      "label": "The Tidewater Guild (fictional)",
+      "source": "https://tidewater-guild.example/.well-known/flashyos.json"
+    },
+    {
+      "id": "person/quill",
+      "kind": "person",
+      "label": "Quill — steward of Lanternworks (fictional)",
+      "source": "https://lanternworks.example/.well-known/directory.json"
+    },
+    {
+      "id": "agent/lanternworks-courier",
+      "kind": "agent",
+      "label": "courier",
+      "source": "https://lanternworks.example/.well-known/directory.json"
+    },
+    {
+      "id": "agent/tidewater-scribe",
+      "kind": "agent",
+      "label": "scribe",
+      "source": "https://tidewater-guild.example/.well-known/directory.json"
+    },
+    {
+      "id": "capability/deliver",
+      "kind": "capability",
+      "label": "deliver",
+      "source": "https://atlas-of-vale.example/capabilities.json"
+    },
+    {
+      "id": "capability/verify",
+      "kind": "capability",
+      "label": "verify",
+      "source": "https://atlas-of-vale.example/capabilities.json"
+    },
+    {
+      "id": "tool/lanternworks-ledger-api",
+      "kind": "tool",
+      "label": "Lanternworks ledger API",
+      "source": "https://lanternworks.example/.well-known/openapi.json"
+    },
+    {
+      "id": "asset/lanternworks-seal-log",
+      "kind": "asset",
+      "label": "Lanternworks seal log",
+      "source": "https://lanternworks.example/seal-log.json"
+    }
+  ],
+  "externals": [
+    {
+      "id": "org/farholm",
+      "kind": "org",
+      "source": "https://farholm.example/.well-known/flashyos.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge/quill-member-of-lanternworks",
+      "from": "person/quill",
+      "to": "org/lanternworks",
+      "kind": "member-of",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/directory.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/lanternworks-operates-courier",
+      "from": "org/lanternworks",
+      "to": "agent/lanternworks-courier",
+      "kind": "operates",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/directory.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/tidewater-operates-scribe",
+      "from": "org/tidewater-guild",
+      "to": "agent/tidewater-scribe",
+      "kind": "operates",
+      "asserted_by": "org/tidewater-guild",
+      "basis": "https://tidewater-guild.example/.well-known/directory.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/courier-offers-deliver",
+      "from": "agent/lanternworks-courier",
+      "to": "capability/deliver",
+      "kind": "offers",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/flashyos-charter.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/scribe-offers-verify",
+      "from": "agent/tidewater-scribe",
+      "to": "capability/verify",
+      "kind": "offers",
+      "asserted_by": "org/tidewater-guild",
+      "basis": "https://tidewater-guild.example/.well-known/flashyos-charter.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/scribe-offers-deliver",
+      "from": "agent/tidewater-scribe",
+      "to": "capability/deliver",
+      "kind": "offers",
+      "asserted_by": "org/tidewater-guild",
+      "basis": "https://tidewater-guild.example/.well-known/flashyos-charter.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/courier-requires-ledger-api",
+      "from": "agent/lanternworks-courier",
+      "to": "tool/lanternworks-ledger-api",
+      "kind": "requires",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/directory.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/lanternworks-owns-ledger-api",
+      "from": "org/lanternworks",
+      "to": "tool/lanternworks-ledger-api",
+      "kind": "owns",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/.well-known/openapi.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/lanternworks-owns-seal-log",
+      "from": "org/lanternworks",
+      "to": "asset/lanternworks-seal-log",
+      "kind": "owns",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/seal-log.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/tidewater-attests-courier",
+      "from": "org/tidewater-guild",
+      "to": "agent/lanternworks-courier",
+      "kind": "attests",
+      "asserted_by": "org/atlas-of-vale",
+      "basis": "https://tidewater-guild.example/attestations/lanternworks-courier.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/lanternworks-transacted-with-farholm",
+      "from": "org/lanternworks",
+      "to": "org/farholm",
+      "kind": "transacted-with",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/settlements/farholm-2026-09.json",
+      "at": "2026-09-28T00:00:00Z"
+    },
+    {
+      "id": "edge/quill-delegates-to-courier",
+      "from": "person/quill",
+      "to": "agent/lanternworks-courier",
+      "kind": "delegates-to",
+      "asserted_by": "org/lanternworks",
+      "basis": "https://lanternworks.example/grants/quill-courier.json",
+      "at": "2026-09-28T00:00:00Z"
+    }
+  ]
+}

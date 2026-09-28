@@ -1,0 +1,15 @@
+{
+  "name": "@flashylabs/agentgraph",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "graph/1 — the vendor-neutral spec for the universal graph of the agentic internet: people, organisations, agents, capabilities, tools, assets and the evidenced relationships between them. The 'What exists?' layer; extends realm/1. Status: draft.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "lint": "node scripts/lint.mjs",
+    "check": "node vendor-graph.mjs check vectors/estate-minimal.json"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

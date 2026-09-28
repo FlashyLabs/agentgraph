@@ -1,0 +1,19 @@
+# graph/1 — the checker's own CI.
+#
+# Nothing installs. This repository is `node:` builtins only, so a runner with
+# Node 22 has everything the lint and the suite need; an install step here would
+# be a dependency nobody declared. Every push and every pull request.
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run lint
+      - run: npm test
