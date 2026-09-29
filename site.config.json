@@ -1,0 +1,50 @@
+{
+  "property": "agentgraph",
+  "domain": null,
+  "title": "agentgraph — graph/1, the graph layer of Web 4",
+  "pitch": "graph/1 is the vendor-neutral format for the universal graph of the agentic internet: people, organisations, agents, capabilities, tools and assets, and the evidenced relationships between them.",
+  "layer": "graph",
+  "contract": "graph/1",
+  "accent": "--flashy-mint",
+  "refusals": [
+    {
+      "title": "Every edge has evidence",
+      "body": "An edge carries `basis`, an https URL its asserter publishes; without one the edge is a claim, and graph/1 does not carry claims. The checker refuses it — it does not downgrade."
+    },
+    {
+      "title": "No self-attestation",
+      "body": "An `attests` edge whose `asserted_by` is either of its endpoints is refused. Standing comes from what others assert — the estate's oldest rule, carried into the graph unchanged."
+    },
+    {
+      "title": "No scores inside the graph",
+      "body": "`score`, `rating`, `rank`, `reputation`, `amount`, `value`, `price`, `balance` and `gold` are refused as key names at any depth, under any prefix. Reputation is a consumer's computation over the graph; money is a separate format."
+    },
+    {
+      "title": "Derived from realm/1, not beside it",
+      "body": "`fromRealm(manifest)` maps every house in a realm/1 manifest to an `org/<org>` node and cites the house's own handshake as the place its existence can be checked. If the register already holds a fact, read it from the manifest; never hand-list it here."
+    },
+    {
+      "title": "Refuses rather than guesses",
+      "body": "An unknown key that is not `x-` prefixed, a dangling reference, a duplicate id, a node whose id prefix disagrees with its kind, an edge between kinds its table does not allow — each is a named refusal, and each has a conformance vector."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What does the graph/1 checker refuse?",
+      "a": "An edge with no `basis` evidence URL, an `attests` edge that names one of its own endpoints as asserter, a score or money key name at any depth, an unknown key that is not `x-` prefixed, a dangling reference, a duplicate id, and an edge between kinds its table does not allow. Each refusal is named and each carries a vector."
+    },
+    {
+      "q": "Where does agentgraph sit in the stack?",
+      "a": "It is layer 2, Graph — the \"What exists?\" question. It says who and what is there and how they relate, and deliberately nothing about how good, how much or how trusted. It extends the estate's realm/1 registry (therealm) rather than reinventing it."
+    },
+    {
+      "q": "Is graph/1 a standard yet?",
+      "a": "No. The status is draft: nothing is published to a registry, no independent adopter has conformed, and no live property serves /.well-known/graph.json yet. A spec becomes a standard only after the first independent adopter is named, and never before."
+    }
+  ],
+  "links": {
+    "hub": "https://github.com/FlashyLabs/web4",
+    "spec": "https://github.com/FlashyLabs/agentgraph",
+    "repo": "https://github.com/FlashyLabs/agentgraph"
+  }
+}
