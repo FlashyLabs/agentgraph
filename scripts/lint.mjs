@@ -44,10 +44,16 @@ for (const f of files) {
   if (m) problem(`credential shape: ${relative(ROOT, f)}: "${m[0]}" — Secret Manager only`);
 }
 
-const LICENCE = 'Licence: to be declared at launch. The estate licence register in flashyos governs; this repository is not yet open-sourced.';
+const LICENCE = 'Licensed under Apache-2.0 (holder Flashy Labs); the estate register in flashyos `tools/estate-licences.mjs` is the authority.';
 const readme = readFileSync(join(ROOT, 'README.md'), 'utf8').trimEnd().split('\n');
 if (readme.at(-1) !== LICENCE) problem('README.md: the final line must be the estate licence line, verbatim');
-if (files.some((f) => relative(ROOT, f) === 'LICENSE')) problem('LICENSE: the licence is declared once, in the estate register in flashyos, never here');
+const licenseFile = files.find((f) => relative(ROOT, f) === 'LICENSE');
+if (!licenseFile) problem('LICENSE: the estate register names this repository Apache-2.0 (holder Flashy Labs); the LICENSE file must be present');
+else {
+  const licence = readFileSync(licenseFile, 'utf8');
+  if (!licence.includes('Apache License')) problem('LICENSE: must carry the Apache License text');
+  if (!licence.includes('Copyright 2026 Flashy Labs')) problem('LICENSE: must name the copyright holder "Copyright 2026 Flashy Labs"');
+}
 
 if (failed) {
   console.error(`lint: ${failed} problem(s)`);

@@ -36,8 +36,10 @@ check can run anywhere Node runs.
 - A path that lets an `attests` edge be asserted by either of its parties.
 - An edge shape without a `basis`.
 - A query language. Version 1 has one helper and says so.
-- A `LICENSE` file or a `license` field. The estate declares licences once, in
-  the register in flashyos.
+- A `license` field in `package.json`, or a licence chosen inside this
+  repository. The estate declares licences once, in the register in flashyos
+  (`tools/estate-licences.mjs`); it names this repository Apache-2.0 (holder
+  Flashy Labs), and the `LICENSE` file carries that text verbatim.
 
 ## Reporting
 

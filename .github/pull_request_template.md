@@ -15,5 +15,5 @@ test is decorative; a rule with code and no prose is a surprise.
 - [ ] no dependency added; `node:` builtins only
 - [ ] every example is fictional (URLs under `.example`, no real person or organisation)
 - [ ] no score, amount or other figure of standing or money introduced anywhere
-- [ ] no `LICENSE` file, no `license` field; the README still ends on the estate licence line
+- [ ] `LICENSE` is the estate's Apache-2.0 text (holder Flashy Labs), no `license` field; the README still ends on the estate licence line
 - [ ] `SPEC.md` still says `Status: draft` unless this PR is the launch

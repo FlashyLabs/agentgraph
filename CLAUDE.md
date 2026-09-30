@@ -62,8 +62,10 @@ node vendor-graph.mjs from-realm test/fixtures/realm-1.json
 - `package.json` carries no dependency key of any kind, no `license` field, and
   `engines.node >= 22`; every `.mjs` imports only `node:` builtins or relative
   files; CI installs nothing.
-- The README's last line is the estate licence line, verbatim, and there is no
-  `LICENSE` file.
+- The README's last line is the estate licence line, verbatim. The `LICENSE`
+  file is the canonical Apache-2.0 text with holder `Flashy Labs`, matching the
+  estate register in flashyos `tools/estate-licences.mjs` — the authority for
+  the identifier; `package.json` still carries no `license` field.
 - No adoption claim, no count, no "widely used" — the prose is checked for it.
 - No credential shape anywhere in the tree.
 

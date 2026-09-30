@@ -42,10 +42,13 @@ describe('dependency-free', () => {
       for (const s of specs) assert.ok(s.startsWith('node:') || s.startsWith('./') || s.startsWith('../'), `${relative(ROOT, f)} imports ${s}`);
     }
   });
-  test('no LICENSE file exists; the README ends on the estate licence line', () => {
-    assert.equal(existsSync(join(ROOT, 'LICENSE')), false);
+  test('the LICENSE is Apache-2.0 (holder Flashy Labs); the README ends on the estate licence line', () => {
+    assert.equal(existsSync(join(ROOT, 'LICENSE')), true, 'the estate register names this repository Apache-2.0 — the LICENSE file must be present');
+    const licence = read('LICENSE');
+    assert.ok(licence.includes('Apache License'), 'the LICENSE must carry the Apache License text');
+    assert.ok(licence.includes('Copyright 2026 Flashy Labs'), 'the LICENSE must name the copyright holder');
     const lines = read('README.md').trimEnd().split('\n');
-    assert.equal(lines.at(-1), 'Licence: to be declared at launch. The estate licence register in flashyos governs; this repository is not yet open-sourced.');
+    assert.equal(lines.at(-1), 'Licensed under Apache-2.0 (holder Flashy Labs); the estate register in flashyos `tools/estate-licences.mjs` is the authority.');
   });
   test('CI installs nothing and runs lint and test on Node 22', () => {
     const ci = read('.github/workflows/ci.yml');
