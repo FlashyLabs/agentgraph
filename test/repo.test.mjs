@@ -50,12 +50,12 @@ describe('dependency-free', () => {
     const lines = read('README.md').trimEnd().split('\n');
     assert.equal(lines.at(-1), 'Licensed under Apache-2.0 (holder Flashy Labs); the estate register in flashyos `tools/estate-licences.mjs` is the authority.');
   });
-  test('CI installs nothing and runs lint and test on Node 22', () => {
+  test('CI installs nothing and runs lint and test on Node 22 and 24', () => {
     const ci = read('.github/workflows/ci.yml');
     assert.doesNotMatch(ci, /npm (ci|install)\b/);
     assert.match(ci, /actions\/checkout@v4/);
     assert.match(ci, /actions\/setup-node@v4/);
-    assert.match(ci, /node-version:\s*22/);
+    assert.match(ci, /node:\s*\[[^\]]*'22'/);
     assert.match(ci, /npm run lint/);
     assert.match(ci, /npm test/);
     assert.match(ci, /pull_request/);
